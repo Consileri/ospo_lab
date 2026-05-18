@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Резюме | Александр Шахов</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --accent: #3498db;
+            --bg: #f8f9fa;
+            --text: #333;
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--bg);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            background: var(--primary);
+            color: var(--white);
+            padding: 40px 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-top: 10px;
+        }
+
+        .profile-photo {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--white);
+            margin-top: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        /* Sections */
+        section {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            border-left: 5px solid var(--accent);
+            padding-left: 15px;
+            color: var(--primary);
+            margin-top: 0;
+        }
+
+        /* Interactive Accordion */
+        .accordion-item {
+            border-bottom: 1px solid #eee;
+        }
+
+        .accordion-header {
+            padding: 15px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            background: #fff;
+        }
+
+        .accordion-header:hover {
+            background: #f0f7ff;
+            color: var(--accent);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 15px;
+            background: #fafafa;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 500px;
+            padding: 15px;
+        }
+
+        .accordion-item.active .arrow {
+            transform: rotate(180deg);
+        }
+
+        /* Skills Table */
+        .skills-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .skills-table th, .skills-table td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .skills-table th {
+            background-color: #f2f2f2;
+            color: var(--primary);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            background: var(--accent);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin: 2px;
+        }
+
+        /* Project Cards (Slide-out effect) */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .project-card {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fdfdfd;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        .project-info {
+            position: absolute;
+            bottom: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(44, 62, 80, 0.95);
+            color: white;
+            padding: 15px;
+            transition: bottom 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .project-card:hover .project-info {
+            bottom: 0;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.8rem; }
+            .container { padding: 10px; }
+            section { padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Александр Шахов</h1>
+        <img src="photo.jpg" alt="Александр Шахов" class="profile-photo">
+        <p>Студент МГТУ СТАНКИН | Разработчик C#/C++ | Промышленная автоматизация</p>
+    </header>
+
+    <section id="about">
+        <h2>О себе</h2>
+        <p>Специализируюсь на информационных системах и технологиях промышленной автоматизации. Увлекаюсь низкоуровневым программированием на C++ и созданием прикладных решений на стеке .NET (C#). Стремлюсь к созданию эффективных систем управления производственными процессами.</p>
+    </section>
+
+    <section id="education">
+        <h2>Образование</h2>
+        <div class="accordion">
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>МГТУ "СТАНКИН" (Бакалавриат)</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p><strong>Направление:</strong> Информационные системы и технологии</p>
+                    <p><strong>Специализация:</strong> Автоматизация технологических процессов и производств</p>
+                    <p>Изучаемые дисциплины: Архитектура вычислительных систем, Теория автоматического управления, Объектно-ориентированное программирование, Промышленные сети.</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>Дополнительные курсы и сертификаты</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <ul>
+                        <li>Продвинутое программирование на C++</li>
+                        <li>Разработка на платформе .NET (C#)</li>
+                        <li>Системы ЧПУ и промышленная робототехника</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>Технические навыки</h2>
+        <table class="skills-table">
+            <thead>
+                <tr>
+                    <th>Категория</th>
+                    <th>Технологии</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Языки</td>
+                    <td>
+                        <span class="badge">C++</span>
+                        <span class="badge">C#</span>
+                        <span class="badge">SQL</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Платформы</td>
+                    <td>
+                        <span class="badge">.NET Core / Framework</span>
+                        <span class="badge">WinForms / WPF</span>
+                        <span class="badge">Arduino / STM32</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Автоматизация</td>
+                    <td>
+                        <span class="badge">PLC Programming</span>
+                        <span class="badge">SCADA</span>
+                        <span class="badge">Industrial IoT</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="projects">
+        <h2>Проекты</h2>
+        <p style="font-size: 0.8rem; color: #888; margin-bottom: 15px;">(Наведите на проект для деталей)</p>
+        <div class="project-grid">
+            <div class="project-card">
+                <h3>Bending Calc</h3>
+                <div class="project-info">
+                    <h4>Расчет параметров гибки</h4>
+                    <p>Приложение на Python/C# для инженерных расчетов деформации листового металла.</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <h3>Visualizer</h3>
+                <div class="project-info">
+                    <h4>Function Visualizer</h4>
+                    <p>Система визуализации математических функций и данных с датчиков в реальном времени.</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <h3>CNC Logic</h3>
+                <div class="project-info">
+                    <h4>Industrial Control</h4>
+                    <p>Разработка алгоритмов управления для систем ЧПУ на C++.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Александр Шахов. Сделано для портфолио.</p>
+    </footer>
+</div>
+
+<script src="resume.js"></script>
+</body></html> </footer>
+</div>
+
+<script src="resume.js"></script>
+</body></html>

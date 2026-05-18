@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Max v2</title>
+</head>
+<body>
+    <input type="number" class="num">
+    <input type="number" class="num">
+    <button id="btn">Max</button>
+    <div id="out"></div>
+
+    <script>
+        document.getElementById('btn').onclick = () => {
+            const vals = Array.from(document.querySelectorAll('.num'), i => parseFloat(i.value) || 0);
+            document.getElementById('out').innerText = Math.max(...vals);
+        };
+    </script>
+</body>
+</html>

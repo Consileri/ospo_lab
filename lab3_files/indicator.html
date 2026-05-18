@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Индикатор со стрелкой</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            transition: background-color 0.5s ease;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 350px;
+        }
+
+        h1 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        /* Styling the range as an indicator */
+        .indicator-box {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 10px;
+            border-radius: 5px;
+            background: #ddd;
+            outline: none;
+            -webkit-appearance: none;
+            cursor: default;
+        }
+
+        /* Custom "needle" thumb */
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #007bff;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        .labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            padding: 0 5px;
+            font-weight: bold;
+            color: #666;
+        }
+
+        /* Keypad */
+        .keypad {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        button {
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            background: #f0f0f0;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        button:hover {
+            background: #e0e0e0;
+            transform: scale(1.05);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        /* Danger state */
+        .danger-bg {
+            background-color: #ff4d4d !important;
+        }
+
+        #currentVal {
+            font-size: 24px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Стрелочный индикатор</h1>
+    
+    <div id="currentVal">0</div>
+
+    <div class="indicator-box">
+        <input type="range" id="range" min="0" max="10" step="1" value="0" list="tickmarks">
+        <datalist id="tickmarks">
+            <option value="0"></option>
+            <option value="1"></option>
+            <option value="2"></option>
+            <option value="3"></option>
+            <option value="4"></option>
+            <option value="5"></option>
+            <option value="6"></option>
+            <option value="7"></option>
+            <option value="8"></option>
+            <option value="9"></option>
+            <option value="10"></option>
+        </datalist>
+        <div class="labels">
+            <span>0</span>
+            <span>5</span>
+            <span>10</span>
+        </div>
+    </div>
+
+    <div class="keypad">
+        <button onclick="updateValue(1)">1</button>
+        <button onclick="updateValue(2)">2</button>
+        <button onclick="updateValue(3)">3</button>
+        <button onclick="updateValue(4)">4</button>
+        <button onclick="updateValue(5)">5</button>
+        <button onclick="updateValue(6)">6</button>
+        <button onclick="updateValue(7)">7</button>
+        <button onclick="updateValue(8)">8</button>
+        <button onclick="updateValue(9)">9</button>
+        <button onclick="updateValue(0)" style="grid-column: span 3;">0</button>
+    </div>
+</div>
+
+<script>
+    const range = document.getElementById('range');
+    const display = document.getElementById('currentVal');
+    const body = document.body;
+
+    function updateValue(val) {
+        // Устанавливаем значение индикатора
+        range.value = val;
+        display.innerText = val;
+
+        // Проверка условия > 5
+        if (val > 5) {
+            body.classList.add('danger-bg');
+        } else {
+            body.classList.remove('danger-bg');
+        }
+    }
+</script>
+
+</body>
+</html>

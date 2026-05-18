@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Генератор титульных листов</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .form-container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+        h1 {
+            color: #1a73e8;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 24px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #444;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        input:focus {
+            outline: none;
+            border-color: #1a73e8;
+            box-shadow: 0 0 0 2px rgba(26,115,232,0.2);
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #1557b0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h1>Генератор титульного листа</h1>
+    <form id="reportForm">
+        <div class="input-group">
+            <label>Кафедра:</label>
+            <input type="text" id="dept" placeholder="Напр.: Информационных систем" required>
+        </div>
+        <div class="input-group">
+            <label>Дисциплина / Тема:</label>
+            <input type="text" id="topic" placeholder="Напр.: Программирование" required>
+        </div>
+        <div class="input-group">
+            <label>Группа:</label>
+            <input type="text" id="group" placeholder="Напр.: АДБ-23-08" required>
+        </div>
+        <div class="input-group">
+            <label>ФИО студента:</label>
+            <input type="text" id="student" placeholder="Иванов И.И." required>
+        </div>
+        <div class="input-group">
+            <label>ФИО преподавателя:</label>
+            <input type="text" id="teacher" placeholder="Петров П.П." required>
+        </div>
+        <button type="submit">Сгенерировать</button>
+    </form>
+</div>
+
+<script>
+    document.getElementById('reportForm').onsubmit = function(e) {
+        e.preventDefault();
+        
+        const params = new URLSearchParams({
+            dept: document.getElementById('dept').value,
+            topic: document.getElementById('topic').value,
+            group: document.getElementById('group').value,
+            student: document.getElementById('student').value,
+            teacher: document.getElementById('teacher').value
+        });
+
+        window.location.href = 'report_title.html?' + params.toString();
+    };
+</script>
+
+</body>
+</html>

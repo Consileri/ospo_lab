@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проверка возраста</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border: 2px solid #e0e0e0;
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        input {
+            padding: 12px;
+            font-size: 18px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            width: 80%;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        button {
+            padding: 10px 25px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-main {
+            background-color: #007bff;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 123, 255, 0.2);
+        }
+
+        .btn-main:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 123, 255, 0.3);
+        }
+
+        .btn-confirm {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .btn-confirm:hover {
+            background-color: #218838;
+        }
+
+        .btn-cancel {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .btn-cancel:hover {
+            background-color: #c82333;
+        }
+
+        #confirmationArea, #finalMessage {
+            display: none;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .confirm-text {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <div id="inputArea">
+        <h1>Введите ваш возраст</h1>
+        <div class="input-group">
+            <input type="number" id="ageInput" placeholder="Например: 25">
+        </div>
+        <button class="btn-main" onclick="askConfirm()">Проверить</button>
+    </div>
+
+    <div id="confirmationArea">
+        <p class="confirm-text">Ваш возраст: <strong id="displayAge"></strong>. Верно?</p>
+        <div class="buttons">
+            <button class="btn-confirm" onclick="finish()">ОК</button>
+            <button class="btn-cancel" onclick="reset()">Отмена</button>
+        </div>
+    </div>
+
+    <div id="finalMessage">
+        <h1 style="color: #28a745;">Спасибо!</h1>
+        <p>Выполнение завершено.</p>
+    </div>
+</div>
+
+<script>
+    const inputArea = document.getElementById('inputArea');
+    const confirmationArea = document.getElementById('confirmationArea');
+    const finalMessage = document.getElementById('finalMessage');
+    const ageInput = document.getElementById('ageInput');
+    const displayAge = document.getElementById('displayAge');
+
+    function askConfirm() {
+        const age = ageInput.value;
+        if (!age) {
+            alert("Пожалуйста, введите число");
+            return;
+        }
+        displayAge.innerText = age;
+        inputArea.style.display = 'none';
+        confirmationArea.style.display = 'block';
+    }
+
+    function reset() {
+        confirmationArea.style.display = 'none';
+        inputArea.style.display = 'block';
+        ageInput.value = '';
+        ageInput.focus();
+    }
+
+    function finish() {
+        confirmationArea.style.display = 'none';
+        finalMessage.style.display = 'block';
+    }
+</script>
+
+</body>
+</html>

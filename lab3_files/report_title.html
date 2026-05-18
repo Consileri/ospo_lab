@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Титульный лист</title>
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif;
+            background-color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        .page {
+            width: 210mm;
+            height: 297mm;
+            padding: 20mm 15mm 20mm 30mm; /* Стандартные поля ГОСТ */
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            border: 1px solid #eee; /* Для визуализации на экране */
+        }
+        .header {
+            font-size: 14pt;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 5mm;
+        }
+        .subheader {
+            font-size: 12pt;
+            margin-bottom: 50mm;
+        }
+        .title-block {
+            flex-grow: 1;
+        }
+        .report-type {
+            font-size: 18pt;
+            font-weight: bold;
+            margin-bottom: 5mm;
+        }
+        .discipline {
+            font-size: 14pt;
+            margin-bottom: 30mm;
+        }
+        .info-block {
+            text-align: left;
+            margin-left: 50%;
+            font-size: 14pt;
+            line-height: 1.5;
+        }
+        .footer {
+            margin-top: auto;
+            font-size: 14pt;
+        }
+        @media print {
+            .page { border: none; }
+            button { display: none; }
+        }
+        .print-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<button class="print-btn" onclick="window.print()">Печать / Сохранить в PDF</button>
+
+<div class="page">
+    <div class="header">МГТУ "СТАНКИН"</div>
+    <div class="subheader">Кафедра <span id="out-dept"></span></div>
+
+    <div class="title-block">
+        <div class="report-type">ОТЧЕТ ПО ЛАБОРАТОРНОЙ РАБОТЕ</div>
+        <div class="discipline">по дисциплине: <span id="out-topic"></span></div>
+    </div>
+
+    <div class="info-block">
+        <div>Выполнил:</div>
+        <div>студент гр. <span id="out-group"></span></div>
+        <div style="margin-bottom: 10mm;"><span id="out-student"></span></div>
+        
+        <div>Проверил:</div>
+        <div><span id="out-teacher"></span></div>
+    </div>
+
+    <div class="footer">
+        Москва, 2026 г.
+    </div>
+</div>
+
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    
+    document.getElementById('out-dept').innerText = urlParams.get('dept') || '...';
+    document.getElementById('out-topic').innerText = urlParams.get('topic') || '...';
+    document.getElementById('out-group').innerText = urlParams.get('group') || '...';
+    document.getElementById('out-student').innerText = urlParams.get('student') || '...';
+    document.getElementById('out-teacher').innerText = urlParams.get('teacher') || '...';
+</script>
+
+</body>
+</html>
